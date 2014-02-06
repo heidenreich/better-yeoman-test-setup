@@ -1,8 +1,8 @@
 /* global describe, it */
 (function () {
-    'use strict';
+   'use strict';
  
-    describe('A Collection constructor', function () {
+   describe('A Collection constructor', function () {
         describe(', when run', function () {
             it('should return a new object', function () {
               var students = new Collection;
@@ -19,9 +19,9 @@
             });
  
         });
-    });
+   });
  
-    describe("A Collection instance", function(){
+   describe("A Collection instance", function(){
       describe("has a .find() method",function(){
         it("should return an object when given an id that is present in the models", function(){
           var students = new Collection([{name: 'Jim', id: '99'}]);
@@ -47,11 +47,32 @@
       });
  
       describe("has an .add() method",function(){
-        it("should add the object it's given to the models property");
-        it("should increase the models property's length by 1");
-        it("should only accept a single object as an argument");
-        it("should not  accept an empty object as an argument");
-        it("should throw an error when given an object without and id property");
+       	it("should add the object it's given to the models property", function(){
+       		var students = new Collection();
+      		students.add({name:'Todd', id:'11'});
+      		expect(students[0].name).to.equal("Todd");
+       		
+       	});
+        	it("should increase the collections length by 1", function(){
+        		var coolCollection = new Collection();
+        		coolCollection.add({name:'jimmy', id:'3'});
+        		expect(coolCollection.length).to equal(1);
+        		coolCollection.add({name:'jake', id:'42'});
+        		expect(coolCollection).to.equal(2);
+
+        	});
+
+        	it("should only accept a single object as an argument");
+
+        	it("should not  accept an empty object as an argument");
+
+        	it("should throw an error when given an object without and id property"function(){
+        		var coolCollection = new Collection()
+        		expect(function()coolCollection.add({name:'jimmy', id:null})).to.throw(error);
+
+
+        	});
+
       });
  
       describe("has a .remove() method",function(){
@@ -60,9 +81,9 @@
         it("should only accept a single string as an id argument");
         it("should return true on successful removal");
       })
-    })
+   })
 })();
 
-
-
+   
+  
 

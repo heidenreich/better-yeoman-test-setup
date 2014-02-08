@@ -114,27 +114,34 @@
       		expect(students.models.length).to.equal(0);
       	});
 
-      	it('should throw an error if the models array was already empty', function () {
-      	  var students = new Collection([]);
-            students.empty();
-            expect(function(){students.empty()}).to.throw(Error);
-      	});
+      	// it('should throw an error if the models array was already empty', function () {
+      	//   	var students = new Collection([{name: 'James', id: '7'}, {name: 'Todd', id: '11'}]);
+       //      students.empty('bun in the oven')
+       //      expect(function(){students.empty()}).to.throw(Error);
+      	// });
+
+       it("should throw an error if an argument is passed", function() {
+          var students = new Collection ([{name:'James', id: '7'}, {name: 'Todd', id: '11'}]);
+          expect( function(){ students.empty('arg') } ).to.throw(Error);
+        });	
 
       });
 	
 		describe("has an .random() method", function(){
       	it('should return a random object from the models array',function(){
-      		var classmates = [{name: 'James', id: '7'}, {name:'jimmy', id:'3'}, {name: 'Todd', id: '11'}];
-      		var students = new Collection(classmates);
-      		var randomStudent = students.random(1)
-      		// expect(classmates).to.include(students.random(1));
-        		expect(classmates.models).to.include(randomStudent);
+      		var students = new Collection([{name: 'James', id: '7'}, {name:'jimmy', id:'3'}, {name: 'Todd', id: '11'}]);
+      		
+        		expect(students).to.include(students.random());
+
       	});
 
       	it('should allow a number as an argument and return that many random objects', function(){
       		var students = new Collection([{name: 'James', id: '7'}, {name: 'Todd', id: '11'}]);
+      		var randomStudent = students.random(2)
+      		expext (randomStudent).to.equal 
 
       	});
+
       	it('should throw an error if argument is not a number', function(){
       		var classmates = [{name: 'James', id: '7'}, {name:'jimmy', id:'3'}, {name: 'Todd', id: '11'}];
       		var students = new Collection(classmates)
@@ -143,6 +150,11 @@
       		expect(function(){classmates.random([])}).to.throw(Error);
       		expect(function(){classmates.random('')}).to.throw(Error);
       	});
+
+      	it("should return a one item array from the array if no argument is given", function () {
+          	var students = new Collection([{name: 'James', id: '7'}, {name:'jimmy', id:'3'}, {name: 'Todd', id: '11'}]);
+          	expect(students.random().length).to.equal(1);
+        });
 
       });
 

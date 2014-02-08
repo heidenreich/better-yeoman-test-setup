@@ -1,4 +1,4 @@
-console.log('This makes me weepy');
+console.log('Have I told you that this makes me feel inadequate');
  
 function Collection (models) {
   	this.models = models;
@@ -49,19 +49,30 @@ function Collection (models) {
   	};
 
   	this.empty = function () {
-  		this.models = [];
-  		return true;
+  			if (arguments.length>0){
+  				throw new Error ("we don't want no arguments here")
+  			}
+  			this.models = [];
+  			return true;
   	};
 
   	this.random = function (x) {
-  		randomModel = _.sample(this.models, x);
-  		return randomModel;
-
-  		if (_.isNumber() != true) {
-  			throw new Error ('we need a number muchacho');
+  		x = x || 1;
+  		if (_.isNumber(x) === false){
+  			throw new Error ('we need a number muchacho')
   		}
-  		
+  		return _.sample (this.models, x)
+	
   	};
+
+  	this.length = function() {
+   	if (arguments.length > 0) 
+    		throw new Error(" no arguments accepted here");
+   		return this.models.length;
+  }
 
 
 }
+
+
+

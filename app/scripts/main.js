@@ -1,4 +1,4 @@
-console.log('\'Allo \'Allo!');
+console.log('This makes me weepy');
  
 function Collection (models) {
   	this.models = models;
@@ -44,6 +44,24 @@ function Collection (models) {
 
   		this.models = _.reject(this.models, function(idNumber){
   			return idNumber.id === idRemoved;
+  			return true;
   		});
-  	}
+  	};
+
+  	this.empty = function () {
+  		this.models = [];
+  		return true;
+  	};
+
+  	this.random = function (x) {
+  		randomModel = _.sample(this.models, x);
+  		return randomModel;
+
+  		if (_.isNumber() != true) {
+  			throw new Error ('we need a number muchacho');
+  		}
+  		
+  	};
+
+
 }

@@ -97,24 +97,75 @@
 
         	// it("should return true on successful removal");
         	// 	var students = new Collection([{name: 'James', id: '7'}]);
+        	// expect(true).to.be.true;
 
       });
 
-      // describe('has an .empty() method'), function(){
-      	
-      // }
+      describe('has an .empty() method', function(){
+      	it("should clear out the models array", function(){
+      		var students = new Collection([{name: 'James', id: '7'}, {name: 'Todd', id: '11'}]);
+      		students.empty();
+      		expect(students.models).to.deep.equal([]);
+      	});
+
+      	it('should reduce the models array length to 0', function(){
+      		var students = new Collection([{name: 'James', id: '7'}, {name: 'Todd', id: '11'}]);
+      		students.empty();
+      		expect(students.models.length).to.equal(0);
+      	});
+
+      	it('should throw an error if the models array was already empty', function () {
+      	  var students = new Collection([]);
+            students.empty();
+            expect(function(){students.empty()}).to.throw(Error);
+      	});
+
+      });
+	
+		describe("has an .random() method", function(){
+      	it('should return a random object from the models array',function(){
+      		var classmates = [{name: 'James', id: '7'}, {name:'jimmy', id:'3'}, {name: 'Todd', id: '11'}];
+      		var students = new Collection(classmates);
+      		var randomStudent = students.random(1)
+      		// expect(classmates).to.include(students.random(1));
+        		expect(classmates.models).to.include(randomStudent);
+      	});
+
+      	it('should allow a number as an argument and return that many random objects', function(){
+      		var students = new Collection([{name: 'James', id: '7'}, {name: 'Todd', id: '11'}]);
+
+      	});
+      	it('should throw an error if argument is not a number', function(){
+      		var classmates = [{name: 'James', id: '7'}, {name:'jimmy', id:'3'}, {name: 'Todd', id: '11'}];
+      		var students = new Collection(classmates)
+
+      		expect(function(){classmates.random({})}).to.throw(Error);
+      		expect(function(){classmates.random([])}).to.throw(Error);
+      		expect(function(){classmates.random('')}).to.throw(Error);
+      	});
+
+      });
+
+      describe("has a .length() method", function(){
+      	it('should return the length of the models array', function () {
+            var students = new Collection([{name: 'James', id: '7'}, {name: 'Jimmy', id: '3'}]);
+            students.length();
+
+            expect(students.models).to.have.length(2)
+        });
+
+      	it("should not accept any arguments", function() {
+      		var students = new Collection([{name: 'James', id: '7'}, {name: 'Jimmy', id: '3'}]);
+      		expect(function() { students.length('a')}).to.throw(Error);
+          	expect(function() { students.length(2)}).to.throw(Error);
+          	expect(function() { students.length({})}).to.throw(Error);
+         });
+
+     	})
+
    })
 })();
 
-    // homework Three more methods
-// describe("has an .empty() method", function(){
-//         it('should clear out the models array');
-//       })
- 
-//       describe("has an .random() method", function(){
-//         it('should return a random object from the models array');
-//       });
- 
-//       describe("has a .length() method", function(){
-//         it('should return the length models array');
-//       })
+
+
+

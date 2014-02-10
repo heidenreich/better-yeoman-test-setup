@@ -154,7 +154,7 @@
       	});
 
       	it("should return a one item array from the array if no argument is given", function () {
-          	var students = new Collection([{name: 'James', id: '7'}, {name:'jimmy', id:'3'}, {name: 'Todd', id: '11'}]);
+          	var students = new Collection([{name: 'James', id: '7'}, {name:'Jimmy', id:'3'}, {name: 'Todd', id: '11'}]);
           	expect(students.random().length).to.equal(1);
         });
 
@@ -174,6 +174,14 @@
           	expect(function() { students.length(2)}).to.throw(Error);
           	expect(function() { students.length({})}).to.throw(Error);
          });
+
+          it('should not mutate the models array', function () {
+            var students = new Collection([{name: 'James', id: '7'}, {name: 'Jimmy', id: '3'}]);
+            var modelsNoMutate = students.models;
+            students.length();
+
+            expect(modelsNoMutate).to.equal(students.models);
+        });
 
      	})
 

@@ -1,4 +1,4 @@
-console.log('Have I told you that this makes me feel inadequate');
+console.log('Have I told you that this makes me feel inadequate?');
  
 function Collection (models) {
   	this.models = models;

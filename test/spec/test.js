@@ -128,18 +128,20 @@
       });
 	
 		describe("has an .random() method", function(){
-      	it('should return a random object from the models array',function(){
-      		var students = new Collection([{name: 'James', id: '7'}, {name:'jimmy', id:'3'}, {name: 'Todd', id: '11'}]);
+      	// it('should return a random object from the models array',function(){
+      	// 	var students = new Collection([{name: 'James', id: '7'}, {name:'jimmy', id:'3'}, {name: 'Todd', id: '11'}]);
       		
-        		expect(students).to.include(students.random());
+       //  		expect(_.contains(students.models, students.random()).to.equal(true));
 
-      	});
+
+      	// });
 
       	it('should allow a number as an argument and return that many random objects', function(){
-      		var students = new Collection([{name: 'James', id: '7'}, {name: 'Todd', id: '11'}]);
-      		var randomStudent = students.random(2)
-      		expext (randomStudent).to.equal 
+      		var students = new Collection([{name: 'James', id: '7'}, {name: 'jimmy', id: '2'}, {name: 'Todd', id: '11'}]);
+            var result = students.random(3);
+            var howManyItReturned = result.length;
 
+            expect(howManyItReturned).to.be.equal(3);
       	});
 
       	it('should throw an error if argument is not a number', function(){
@@ -177,6 +179,7 @@
 
    })
 })();
+
 
 
 
